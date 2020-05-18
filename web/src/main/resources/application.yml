@@ -1,0 +1,69 @@
+#数据源配置
+spring:
+  # 标记环境 test、dev、prod
+  profiles:
+    active: local
+  # 关闭 favicon.ico
+  mvc:
+    favicon:
+      enabled: false
+  servlet:
+    context-path:
+    # 文件上传大小限制
+    multipart:
+      enabled: true
+      max-file-size: 1000000000
+      max-request-size: 5000000000
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  thymeleaf:
+    #模板的模式，支持 HTML, XML TEXT JAVASCRIPT
+    mode: HTML5
+    #编码 可不用配置
+    encoding: UTF-8
+    #开发配置为false,避免修改模板还要重启服务器
+    cache: false
+    #配置模板路径，默认是templates，可以不用配置
+    # prefix: classpath:/templates/
+    # 后缀
+    suffix: .html
+# mybatis
+mybatis:
+  #开启驼峰命名法
+  configuration:
+    map-underscore-to-camel-case: true
+mybatis-plus:
+  mapper-locations: classpath*:mapper/**/*.xml
+  type-aliases-package: com.yuntongxun.ytx.pojo.po
+
+pagehelper:
+  helperDialect: mysql
+  params: count=countSql
+  reasonable: false
+  supportMethodsArguments: true
+
+
+# 日志 位置
+logging:
+  config: classpath:logback-boot.xml
+
+# Cacheable 注解默认生存时间（秒）
+cacheable:
+  redis:
+    ttl: 3600
+
+# undertow 容器配置
+server:
+  undertow:
+    accesslog:
+      # 是否打开 undertow 日志，默认为 false
+      enabled: false
+      dir: ./logs/fast
+    # 指定工作者线程的 I/0 线程数，默认为 2 或者 CPU 的个数
+    # io-threads:
+    # 设置 HTTP POST 内容的最大长度，默认不做限制
+    max-http-post-size: 0
+

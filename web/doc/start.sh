@@ -1,0 +1,1 @@
+nohup java -Xms512m -Xmx8096m -jar -Dytx.center.num=1 -Dytx.instance.num=2 fast-web-1.0.5.jar --server.port=60000 --spring.profiles.active=prod  >system.log 2>&1 &

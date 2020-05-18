@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+	<script language="javascript" th:inline="javascript">
+		var rootUrl=[[${#httpServletRequest.getContextPath()}]];
+
+		$(function(){
+			$.ajax({
+				type:"get",
+				url: rootUrl + "/user/third/getURL",
+				dataType:"json",
+				timeout:3000,
+				contentType:"application/json",
+				success:function(url){
+					window.location.href = url["msg"];
+				},
+				error:function(){
+					alert("获取URL失败")
+				}
+			})
+		});
+	</script>
+	</body>
+</html>

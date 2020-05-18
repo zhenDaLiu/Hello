@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuntongxun.ytx.mapper.sys.SysMenuMapper">
+
+    <sql id="BaseColumnList">
+      id ,
+      menu_code as menuCode,
+      menu_name as menuName,
+      menu_icon as menuIcon,
+      parent_id as parentId,
+      sort_num as sortNum,
+      create_time as createTime,
+      update_time as updateTime
+    </sql>
+
+    <select id="selectPage" resultType="com.yuntongxun.ytx.pojo.po.sys.SysMenu">
+        SELECT
+        <include refid="BaseColumnList"/>
+        FROM ytx_sys_menu
+        <trim prefix="WHERE" prefixOverrides="AND">
+            <if test="menu_name !=null and menu_name !=''">
+                and menu_name like #{menu_name}
+            </if>
+        </trim>
+        ORDER BY create_time DESC
+    </select>
+
+    <select id="selectOneByMenuCode" parameterType="java.lang.String" resultType="com.yuntongxun.ytx.pojo.po.sys.SysMenu">
+        SELECT
+        <include refid="BaseColumnList"/>
+        FROM ytx_sys_menu
+        <trim prefix="WHERE" prefixOverrides="AND">
+            <if test="menu_code !=null and menu_code !=''">
+                and menu_code = #{menu_code}
+            </if>
+        </trim>
+        limit 1
+    </select>
+
+    <select id="selectOneByMenuName" parameterType="java.lang.String" resultType="com.yuntongxun.ytx.pojo.po.sys.SysMenu">
+        SELECT
+        <include refid="BaseColumnList"/>
+        FROM ytx_sys_menu
+        <trim prefix="WHERE" prefixOverrides="AND">
+            <if test="menu_name !=null and menu_name !=''">
+                and menu_name = #{menu_name}
+            </if>
+        </trim>
+        limit 1
+    </select>
+
+    <select id="findAll" resultType="com.yuntongxun.ytx.pojo.po.sys.SysMenu">
+        SELECT
+        <include refid="BaseColumnList"/>
+        FROM ytx_sys_menu
+        <if test="deleteStatus != null">
+            where delete_status = #{deleteStatus}
+        </if>
+        ORDER BY sort_num DESC
+    </select>
+
+</mapper>

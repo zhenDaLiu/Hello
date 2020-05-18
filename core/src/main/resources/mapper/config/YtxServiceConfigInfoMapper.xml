@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuntongxun.ytx.mapper.config.YtxServiceConfigInfoMapper">
+
+
+    <sql id="BaseColumnList">
+        id AS id,
+        service_code AS serviceCode,
+        service_name AS serviceName,
+        service_config_key AS serviceConfigKey,
+        service_config_value AS serviceConfigValue,
+        service_status AS serviceStatus,
+        create_time AS createTime,
+        update_time AS updateTime
+    </sql>
+    <select id="selectByServiceCode" parameterType="java.lang.String" resultType="com.yuntongxun.ytx.pojo.po.config.YtxServiceConfigInfo">
+        SELECT
+        <include refid="BaseColumnList"/>
+        FROM ytx_service_config_info
+        WHERE service_code = #{serviceCode}
+        AND   service_config_key = #{key}
+    </select>
+    <select id="selectByServiceCodeOnly" parameterType="java.lang.String" resultType="com.yuntongxun.ytx.pojo.po.config.YtxServiceConfigInfo">
+        SELECT
+        <include refid="BaseColumnList"/>
+        FROM ytx_service_config_info
+        WHERE service_code = #{serviceCode}
+    </select>
+</mapper>

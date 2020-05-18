@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+	<script language="javascript" th:inline="javascript">
+		var message = [[${message}]];
+		if(message.meta.code == 200){
+			alert("登录成功");
+		}
+
+	</script>
+	</body>
+</html>

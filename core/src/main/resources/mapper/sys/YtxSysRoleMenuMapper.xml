@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuntongxun.ytx.mapper.sys.YtxSysRoleMenuMapper">
+
+    <!-- 批量插入角色菜单 -->
+    <insert id="batchInsertRoleMenu">
+        insert into ytx_sys_role_menu(id,role_id,menu_id,delete_flag)
+        values
+        <foreach collection="menuIds" item="item" separator=",">
+            (
+                #{item.id},#{roleId},#{item.menuId},1
+            )
+        </foreach>
+    </insert>
+
+    <!-- 根据角色id查询菜单信息 -->
+    <select id="getUserMenusByRoles" resultType="com.yuntongxun.ytx.pojo.dto.rsp.sys.SysMenuRspDto">
+        select
+        DISTINCT menu.id,
+        menu.menu_code as menuCode,
+        menu.menu_name as menuName,
+        menu.menu_icon as menuIcon,
+        menu.parent_id as parentId,
+        menu.sort_num as sortNum,
+        menu.update_time as updateTime,
+        menu.create_time as createTime
+        from ytx_sys_menu menu
+        inner join ytx_sys_role_menu rolemenu on rolemenu.menu_id = menu.id
+        inner join ytx_sys_role role on role.id = rolemenu.role_id
+        where menu.delete_status = 1 and role.id in
+        <foreach collection="roleIds" separator="," open="(" close=")" item="item">
+            #{item}
+        </foreach>
+    </select>
+</mapper>

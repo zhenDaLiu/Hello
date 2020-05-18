@@ -1,0 +1,79 @@
+server:
+  port: 9999
+
+#数据源配置
+spring:
+  datasource:
+    multi: false # 是否启动多数据源配置
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      first:  #数据源1
+        url: jdbc:mysql://47.97.195.148:3306/fast?useUnicode=yes&characterEncoding=UTF-8&useSSL=false
+        username: fast
+        password: CXvO9Sc5TeJy
+      second:  #数据源2
+        url: jdbc:mysql://127.0.0.1:3306/livenew_fwb?useUnicode=yes&characterEncoding=UTF-8&useSSL=false
+        username: root
+        password: root
+      # 初始化大小，最小，最大
+      initial-size: 10
+      min-idle: 5
+      max-active: 2500
+      # 配置获取连接等待超时的时间
+      maxWait: 60000
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      timeBetweenEvictionRunsMillis: 60000
+      # 配置一个连接在池中最小生存的时间，单位是毫秒
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 1 FROM DUAL
+      testWhileIdle: true
+      testOnBorrow: true
+      testOnReturn: false
+      # 数据库断开后自动连接
+      log-abandoned: true
+      remove-abandoned: true
+      remove-abandoned-timeout-millis: 180000
+      # 打开PSCache，并且指定每个连接上PSCache的大小
+      poolPreparedStatements: true
+      maxPoolPreparedStatementPerConnectionSize: 20
+      # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+      filters: stat,wall,slf4j
+      # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+      connectionProperties: druid.stat.mergeSql=true
+  # Redis配置
+  redis:
+#    cluster:
+#      nodes: 127.0.0.1:6378,127.0.0.1:6377,127.0.0.1:6376,127.0.0.1:6375,127.0.0.1:6374,127.0.0.1:6373
+    host: 47.97.195.148
+    port: 6379
+    database: 4
+    password: 'S1FAxLuQrP'
+    timeout: 10000
+    lettuce:
+      pool:
+        # 连接池最大连接数（使用负值表示没有限制） 默认 8
+        max-active: 8
+        # 连接池中的最大空闲连接 默认 8
+        max-idle: 8
+        # 连接池中的最小空闲连接 默认 0
+        min-idle: 0
+        # 连接池最大阻塞等待时间（使用负值表示没有限制） 默认 -1
+        max-wait: -1
+
+# swagger 是否启用
+swagger:
+  enable: false
+
+
+
+
+
+
+
+
+
+
+
+
+

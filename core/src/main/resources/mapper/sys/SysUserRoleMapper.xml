@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuntongxun.ytx.mapper.sys.SysUserRoleMapper">
+
+    <delete id="deleteByUserId" parameterType="java.lang.String">
+        DELETE FROM ytx_sys_user_role
+        <trim prefix="WHERE" prefixOverrides="AND">
+            <if test="user_id !=null and user_id !=''">
+                and user_id = #{user_id}
+            </if>
+        </trim>
+    </delete>
+
+    <!-- 批量插入生成的兑换码 -->
+    <insert id ="insertSysUserRoleBatch" parameterType="java.util.List" >
+        insert into ytx_sys_user_role
+        (id ,user_id ,role_id ,create_time ,update_time)
+        values
+        <foreach collection ="list" item="sysUserRole" index= "index" separator =",">
+            (
+            #{sysUserRole.id}, #{sysUserRole.userId},
+            #{sysUserRole.roleId},
+            #{sysUserRole.createTime},
+            #{sysUserRole.updateTime}
+            )
+        </foreach >
+    </insert >
+
+    <!-- 获取后台管理网站用户所有的角色编码 -->
+    <select id="getUserRoleCode" resultType="java.lang.String">
+        select
+            role_code
+        FROM
+            ytx_sys_role role
+                LEFT JOIN
+            ytx_sys_user_role user
+            ON
+                role.id=user.role_id
+        WHERE
+            role.delete_status = 1
+          AND
+            user.user_id=#{userId}
+    </select>
+</mapper>

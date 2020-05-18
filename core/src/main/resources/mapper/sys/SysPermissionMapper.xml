@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuntongxun.ytx.mapper.sys.SysPermissionMapper">
+
+    <sql id="BaseColumnList">
+      id ,
+      menu_code as menuCode,
+      menu_name as menuName,
+      permission_code as permissionCode,
+      permission_name as permissionName,
+      required_permission as requiredPermission
+    </sql>
+
+    <select id="selectPage" resultType="com.yuntongxun.ytx.pojo.po.sys.SysPermission">
+        SELECT
+          <include refid="BaseColumnList"/>
+        FROM ytx_sys_permission
+        <trim prefix="WHERE" prefixOverrides="AND">
+            <if test="menu_name !=null and menu_name !=''">
+                and menu_name like #{menu_name}
+            </if>
+            <if test="permission_name !=null and permission_name !=''">
+                and permission_name like #{permission_name}
+            </if>
+        </trim>
+        ORDER BY id DESC
+    </select>
+
+    <select id="findByRoleIds" parameterType="java.lang.Long" resultType="com.yuntongxun.ytx.pojo.po.sys.SysPermission">
+        SELECT
+        <include refid="BaseColumnList"/>
+        FROM
+        ytx_sys_permission
+        WHERE
+        id IN (
+        SELECT permission_id FROM ytx_sys_role_permission WHERE role_id in
+        <foreach collection="role_ids" item="role_id" index="index" open="(" separator="," close=")">
+            #{role_id}
+        </foreach>
+        )
+    </select>
+
+    <select id="findOneByPermissionCode" parameterType="java.lang.String" resultType="com.yuntongxun.ytx.pojo.po.sys.SysPermission">
+        SELECT
+        <include refid="BaseColumnList"/>
+        FROM ytx_sys_permission
+        <trim prefix="WHERE" prefixOverrides="AND">
+            <if test="permission_code !=null and permission_code !=''">
+                and permission_code = #{permission_code}
+            </if>
+        </trim>
+        limit 1
+    </select>
+
+    <select id="findOneByPermissionName" parameterType="java.lang.String" resultType="com.yuntongxun.ytx.pojo.po.sys.SysPermission">
+        SELECT
+        <include refid="BaseColumnList"/>
+        FROM ytx_sys_permission
+        <trim prefix="WHERE" prefixOverrides="AND">
+            <if test="permission_name !=null and permission_name !=''">
+                and permission_name = #{permission_name}
+            </if>
+        </trim>
+        limit 1
+    </select>
+
+</mapper>

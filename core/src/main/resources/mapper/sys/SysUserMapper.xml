@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuntongxun.ytx.mapper.sys.SysUserMapper">
+
+    <select id="selectPList" resultType="com.yuntongxun.ytx.pojo.vo.sys.SysUserVo">
+      select
+        u.id as id ,
+        u.username as username ,
+        u.nickname as nickname ,
+        u.dc_id as dcId ,
+        u.delete_status as deleteStatus,
+        u.create_time as createTime ,
+        u.update_time as updateTime ,
+        GROUP_CONCAT(r.role_name) as roles
+      from ytx_sys_user u
+      LEFT JOIN ytx_sys_user_role ur on u.id = ur.user_id
+      LEFT JOIN ytx_sys_role r on r.id = ur.role_id
+      GROUP BY u.id
+      <if test="username !=null and username !=''">
+          having u.username like #{username}
+      </if>
+      ORDER BY u.create_time desc
+      limit #{start_row}, #{offset_limit}
+    </select>
+
+    <select id="selectPCount" resultType="java.lang.Integer">
+        select
+        count(0)
+        from
+        ytx_sys_user u
+        <trim prefix="WHERE" prefixOverrides="AND">
+            <if test="username !=null and username !=''">
+                and u.username like #{username}
+            </if>
+        </trim>
+    </select>
+
+    <delete id="clearRole" parameterType="java.lang.String">
+        DELETE FROM ytx_sys_user_role WHERE user_id = #{user_id}
+    </delete>
+
+    <!-- 批量插入 ytx_sys_user_role -->
+    <insert id ="giveRole" parameterType="java.util.List">
+        insert into ytx_sys_user_role
+        (
+          id ,
+          user_id ,
+          role_id ,
+          create_time ,
+          update_time
+        )
+        values
+        <foreach collection ="list" item="item" index= "index" separator =",">
+            (
+              #{item.id} ,
+              #{item.userId} ,
+              #{item.roleId} ,
+              #{item.createTime} ,
+              #{item.updateTime}
+            )
+        </foreach>
+    </insert>
+
+    <update id="updateStatusById">
+        update ytx_sys_user
+        <trim prefix="set" prefixOverrides=",">
+            <if test="delete_status !=null">
+                delete_status = #{delete_status}
+            </if>
+        </trim>
+        <trim prefix="WHERE" prefixOverrides="AND">
+            <if test="id !=null">
+                and id = #{id}
+            </if>
+        </trim>
+        limit 1
+    </update>
+
+    <update id="updatePasswordById">
+        update ytx_sys_user
+        <trim prefix="set" prefixOverrides=",">
+            <if test="password !=null and password !=''">
+                password = #{password}
+            </if>
+        </trim>
+        <trim prefix="WHERE" prefixOverrides="AND">
+            <if test="id !=null and id !=''">
+                and id = #{id}
+            </if>
+        </trim>
+        limit 1
+    </update>
+
+    <!-- 根据id修改密码、盐值 -->
+    <update id="updatePasswordAndSaltById">
+        update ytx_sys_user
+        <trim prefix="set" prefixOverrides=",">
+            <if test="password !=null and password !=''">
+                ,password = #{password}
+            </if>
+            <if test="salt !=null and salt !=''">
+                ,salt = #{salt}
+            </if>
+        </trim>
+        <trim prefix="WHERE" prefixOverrides="AND">
+            <if test="id !=null and id !=''">
+                and id = #{id}
+            </if>
+        </trim>
+        limit 1
+    </update>
+
+    <!-- 获取管理员列表 -->
+    <select id="getAdminList" resultType="com.yuntongxun.ytx.pojo.dto.rsp.sys.AdminsRspDto">
+        SELECT
+            distinct sysuser.id,
+            sysuser.username AS userLogin,
+            sysuser.nickname AS userNiceName,
+            sysuser.phone,
+            sysuser.delete_status AS userStatus,
+            (
+                SELECT
+                    GROUP_CONCAT( project.`name` )
+                FROM
+                    ytx_sys_user_project platform
+                        INNER JOIN cmf_project project ON project.pid = platform.project_id
+                WHERE
+                    platform.user_id = sysuser.id
+                GROUP BY
+                    platform.user_id
+            ) AS userPlatform,
+            (
+                SELECT
+                    GROUP_CONCAT( indu.industry_name )
+                FROM
+                    ytx_sys_user_industry uindu
+                        INNER JOIN cmf_dl_industry indu ON indu.id = uindu.industry_id
+                WHERE
+                    uindu.user_id = sysuser.id
+                GROUP BY
+                    uindu.user_id
+            ) AS userIndustry
+        FROM
+            ytx_sys_user sysuser
+            <if test="platforms != null and platforms.size > 0">
+                INNER JOIN ytx_sys_user_project up on up.user_id = sysuser.id
+                and up.project_id in
+                <foreach collection="platforms" open="(" close=")" separator="," item="item">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="industryList != null and industryList.size > 0">
+                INNER join ytx_sys_user_industry ui on ui.user_id = sysuser.id
+                and ui.industry_id in
+                <foreach collection="industryList" open="(" close=")" separator="," item="item">
+                    #{item}
+                </foreach>
+            </if>
+            <trim prefix="Where" prefixOverrides="AND">
+                <if test="keyword != null and keyword !=''">
+                    AND (sysuser.username like concat('%',#{keyword},'%') or sysuser.nickname like concat('%',#{keyword},'%') )
+                </if>
+                <if test="deleteStatus != null">
+                    AND sysuser.delete_status = #{deleteStatus}
+                </if>
+            </trim>
+
+    </select>
+
+</mapper>
