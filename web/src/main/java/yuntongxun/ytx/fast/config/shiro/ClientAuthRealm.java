@@ -1,8 +1,5 @@
 package yuntongxun.ytx.fast.config.shiro;
 
-
-import com.yuntongxun.admin.service.sys.ISysPermissionService;
-import com.yuntongxun.admin.service.sys.ISysUserService;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -12,6 +9,8 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
+import yuntongxun.admin.service.sys.ISysPermissionService;
+import yuntongxun.admin.service.sys.ISysUserService;
 
 /**
  * 认证Realm

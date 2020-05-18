@@ -1,10 +1,10 @@
 package yuntongxun.ytx.fast.config;
 
-import com.yuntongxun.ytx.fast.executor.YTXThreadPoolTaskExecutor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import yuntongxun.ytx.fast.executor.YTXThreadPoolTaskExecutor;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.ThreadPoolExecutor;

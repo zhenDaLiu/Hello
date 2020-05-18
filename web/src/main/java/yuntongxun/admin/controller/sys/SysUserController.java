@@ -1,8 +1,6 @@
 package yuntongxun.admin.controller.sys;
 
 import com.github.pagehelper.PageInfo;
-import com.yuntongxun.admin.service.sys.ISysUserService;
-import com.yuntongxun.ytx.controller.base.BaseController;
 import com.yuntongxun.ytx.pojo.dto.req.sys.*;
 import com.yuntongxun.ytx.pojo.vo.sys.Message;
 import com.yuntongxun.ytx.pojo.vo.sys.SysUserVo;
@@ -14,6 +12,8 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import yuntongxun.admin.service.sys.ISysUserService;
+import yuntongxun.ytx.controller.base.BaseController;
 
 import javax.validation.Valid;
 

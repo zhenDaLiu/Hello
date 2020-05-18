@@ -1,12 +1,9 @@
 package yuntongxun.ytx.fast.config.shiro;
 
 
-import com.yuntongxun.ytx.fast.constenum.ConstEnum;
 import com.yuntongxun.ytx.pojo.dto.req.sys.ReqUserIdDto;
 import com.yuntongxun.ytx.pojo.po.sys.SysPermission;
 import com.yuntongxun.ytx.pojo.po.sys.SysUser;
-import com.yuntongxun.admin.service.sys.ISysPermissionService;
-import com.yuntongxun.admin.service.sys.ISysUserService;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -18,6 +15,9 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
+import yuntongxun.admin.service.sys.ISysPermissionService;
+import yuntongxun.admin.service.sys.ISysUserService;
+import yuntongxun.ytx.fast.constenum.ConstEnum;
 
 import java.util.List;
 

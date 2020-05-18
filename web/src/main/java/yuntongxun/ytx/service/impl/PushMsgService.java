@@ -5,7 +5,6 @@ import cn.hutool.json.JSONUtil;
 import com.google.common.collect.Lists;
 import com.yuntongxun.ytx.constants.RestConstants;
 import com.yuntongxun.ytx.constants.config.GlobalConfig;
-import com.yuntongxun.ytx.fast.exception.ClientBusinessException;
 import com.yuntongxun.ytx.pojo.dto.req.im.msg.PushMsgExtOpts;
 import com.yuntongxun.ytx.pojo.dto.req.im.msg.PushMsgReq;
 import com.yuntongxun.ytx.pojo.dto.rsp.im.msg.PushMsgRsp;
@@ -14,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import yuntongxun.ytx.fast.exception.ClientBusinessException;
 
 /**
  * 消息推送Service

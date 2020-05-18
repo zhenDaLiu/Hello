@@ -1,6 +1,5 @@
 package yuntongxun.ytx.fast.config.shiro;
 
-import com.yuntongxun.ytx.fast.constenum.ConstStr;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.web.filter.authc.BasicHttpAuthenticationFilter;
 import org.slf4j.Logger;
@@ -8,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMethod;
+import yuntongxun.ytx.fast.constenum.ConstStr;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;

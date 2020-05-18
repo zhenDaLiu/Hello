@@ -1,13 +1,13 @@
 package yuntongxun.admin.controller.sys;
 
 import com.github.pagehelper.PageInfo;
-import com.yuntongxun.admin.service.sys.ISysMenuService;
+
 import com.yuntongxun.ytx.pojo.dto.req.sys.*;
 import com.yuntongxun.ytx.pojo.dto.rsp.sys.SysMenuRspDto;
 import com.yuntongxun.ytx.pojo.po.sys.SysPermission;
 import com.yuntongxun.ytx.pojo.vo.sys.Message;
 import com.yuntongxun.ytx.pojo.vo.sys.SysRoleVo;
-import com.yuntongxun.admin.service.sys.ISysRoleService;
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -15,6 +15,8 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import yuntongxun.admin.service.sys.ISysMenuService;
+import yuntongxun.admin.service.sys.ISysRoleService;
 
 import javax.validation.Valid;
 import java.util.List;

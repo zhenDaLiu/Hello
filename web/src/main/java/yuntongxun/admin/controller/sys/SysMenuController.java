@@ -1,7 +1,6 @@
 package yuntongxun.admin.controller.sys;
 
 import com.github.pagehelper.PageInfo;
-import com.yuntongxun.admin.service.sys.ISysMenuService;
 import com.yuntongxun.ytx.pojo.dto.req.sys.ReqIdDto;
 import com.yuntongxun.ytx.pojo.dto.req.sys.ReqMenuDto;
 import com.yuntongxun.ytx.pojo.dto.req.sys.ReqMenuPageDto;
@@ -16,6 +15,7 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import yuntongxun.admin.service.sys.ISysMenuService;
 
 import javax.validation.Valid;
 import java.util.List;

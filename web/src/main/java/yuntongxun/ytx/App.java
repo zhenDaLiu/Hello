@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  *
  * 启动jvm参数加上 -Dytx.center.num=1 -Dytx.instance.num=1
  */
+
 @SpringBootApplication(exclude={DataSourceAutoConfiguration.class},scanBasePackages = {"com.yuntongxun"})
 @MapperScan({"com.yuntongxun.ytx.mapper"})
 @EnableTransactionManagement

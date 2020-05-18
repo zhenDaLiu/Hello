@@ -7,7 +7,6 @@ import com.yuntongxun.ytx.pojo.dto.req.sys.ReqPermissionPageDto;
 import com.yuntongxun.ytx.pojo.dto.req.sys.ReqUserIdDto;
 import com.yuntongxun.ytx.pojo.po.sys.SysPermission;
 import com.yuntongxun.ytx.pojo.vo.sys.Message;
-import com.yuntongxun.admin.service.sys.ISysPermissionService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -15,10 +14,16 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import yuntongxun.admin.service.sys.ISysPermissionService;
 
 import javax.validation.Valid;
 import java.util.List;
-
+/**
+ * 权限模块
+ * @author chenshun
+ * @email sunlightcs@gmail.com
+ * @date 2017/9/16 22:20
+ */
 @Api(tags = "02-权限模块")
 @RestController
 @RequestMapping("/permission")

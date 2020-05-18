@@ -1,9 +1,9 @@
 package yuntongxun.ytx.fast.config;
 
-import com.yuntongxun.ytx.fast.filter.ControllerLogFilter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import yuntongxun.ytx.fast.filter.ControllerLogFilter;
 
 /**
  * 配置Filter过滤条件

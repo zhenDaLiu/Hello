@@ -1,12 +1,12 @@
 package yuntongxun.ytx.fast.config;
 
-import com.yuntongxun.ytx.fast.redis.RedisExpiredListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.listener.PatternTopic;
 import org.springframework.data.redis.listener.RedisMessageListenerContainer;
+import yuntongxun.ytx.fast.redis.RedisExpiredListener;
 
 /**
  * redis 监听配置

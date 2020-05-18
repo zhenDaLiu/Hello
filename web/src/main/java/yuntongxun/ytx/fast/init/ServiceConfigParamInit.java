@@ -32,18 +32,18 @@ public class ServiceConfigParamInit implements CommandLineRunner {
 
     private void initYtxServiceConfig(){
         // 初始化ytx_service_config_info表中的数据
-        log.info("初始化ytx_service_config_info ....");
-        List<YtxServiceConfigInfo> ytxServiceConfigInfos = configInfoMapper.selectList(null);
-        if(ytxServiceConfigInfos != null && ytxServiceConfigInfos.size() > 0){
-            JSONObject jsonObject;
-            for(YtxServiceConfigInfo configInfo : ytxServiceConfigInfos){
-                jsonObject = ConfigParams.paramsMap.get(configInfo.getServiceCode());
-                if(jsonObject == null){
-                    jsonObject = new JSONObject();
-                }
-                jsonObject.put(configInfo.getServiceConfigKey(),configInfo.getServiceConfigValue());
-                ConfigParams.paramsMap.put(configInfo.getServiceCode(),jsonObject);
-            }
-        }
+//        log.info("初始化ytx_service_config_info ....");
+//        List<YtxServiceConfigInfo> ytxServiceConfigInfos = configInfoMapper.selectList(null);
+//        if(ytxServiceConfigInfos != null && ytxServiceConfigInfos.size() > 0){
+//            JSONObject jsonObject;
+//            for(YtxServiceConfigInfo configInfo : ytxServiceConfigInfos){
+//                jsonObject = ConfigParams.paramsMap.get(configInfo.getServiceCode());
+//                if(jsonObject == null){
+//                    jsonObject = new JSONObject();
+//                }
+//                jsonObject.put(configInfo.getServiceConfigKey(),configInfo.getServiceConfigValue());
+//                ConfigParams.paramsMap.put(configInfo.getServiceCode(),jsonObject);
+//            }
+//        }
     }
 }

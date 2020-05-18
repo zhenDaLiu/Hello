@@ -1,7 +1,6 @@
 package yuntongxun.ytx.fast.config;
 
 import com.yuntongxun.ytx.constants.YtxConstants;
-import com.yuntongxun.ytx.fast.constenum.ConstStr;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,6 +13,7 @@ import springfox.documentation.service.ResponseMessage;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
+import yuntongxun.ytx.fast.constenum.ConstStr;
 
 import java.util.ArrayList;
 import java.util.List;

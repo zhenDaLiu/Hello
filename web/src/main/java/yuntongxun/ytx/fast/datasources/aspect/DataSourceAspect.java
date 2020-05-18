@@ -1,8 +1,5 @@
 package yuntongxun.ytx.fast.datasources.aspect;
 
-import com.yuntongxun.ytx.fast.datasources.DataSourceNames;
-import com.yuntongxun.ytx.fast.datasources.DynamicDataSource;
-import com.yuntongxun.ytx.fast.datasources.annotation.DataSource;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -12,7 +9,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.Ordered;
 import org.springframework.stereotype.Component;
-
+import yuntongxun.ytx.fast.datasources.DataSourceNames;
+import yuntongxun.ytx.fast.datasources.DynamicDataSource;
+import yuntongxun.ytx.fast.datasources.annotation.DataSource;
 import java.lang.reflect.Method;
 
 /**

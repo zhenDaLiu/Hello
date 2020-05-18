@@ -7,7 +7,10 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.Future;
 
 /**
- * Created by Administrator on 2018/7/18.
+ * 线程池
+ * @author chenshun
+ * @email sunlightcs@gmail.com
+ * @date 2017/9/16 22:20
  */
 public class YTXThreadPoolTaskExecutor extends ThreadPoolTaskExecutor {
 
