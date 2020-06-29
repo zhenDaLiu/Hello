@@ -37,7 +37,6 @@
         <influxdb.version>2.15</influxdb.version>
         <httpcore.version>4.4.6</httpcore.version>
         <httpclient.version>4.5.5</httpclient.version>
-        <p3c-pmd.version>2.0.1</p3c-pmd.version>
         <guava.version>27.0.1-jre</guava.version>
         <lombok.version>1.18.10</lombok.version>
         <hutool.version>5.0.5</hutool.version>
