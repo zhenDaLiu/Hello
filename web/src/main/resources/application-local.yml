@@ -47,7 +47,7 @@ spring:
 #      nodes: 127.0.0.1:6378,127.0.0.1:6377,127.0.0.1:6376,127.0.0.1:6375,127.0.0.1:6374,127.0.0.1:6373
     host: 192.168.181.212
     port: 6379
-    database: 8
+    database: 9
     # password: 'S1FAxLuQrP'
     password: 'Hyan@123'
     timeout: 10000
